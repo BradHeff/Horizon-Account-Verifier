@@ -111,11 +111,10 @@ To get a local copy up and running follow these simple example steps.
 
 Software needed for this application to work
 * python 3.8
-
-Windows: [Download Python](python-url)
-
-Linux:
-  ```sh
+* * Windows: 
+* * * [Download Python](python-url)
+* * Linux:
+* * *  ```sh
   sudo apt install python3
   ```
 
