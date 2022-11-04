@@ -114,9 +114,7 @@ Software needed for this application to work
 * * Windows: 
 * * * [Download Python](python-url)
 * * Linux:
-* * *  ```sh
-  sudo apt install python3
-  ```
+* * *  ```sudo apt install python3```
 
 ### Installation
 
