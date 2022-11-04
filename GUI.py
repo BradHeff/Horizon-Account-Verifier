@@ -3,8 +3,6 @@ from tkinter import ttk
 from Functions import Version, Title
 from Image_Date import image
 
-print(Version[5])
-
 
 def Window(self):
     W, H = 715, 200
@@ -37,7 +35,8 @@ def HAVGui(self):
     frm1 = tk.Frame(self)
     frm2 = tk.Frame(self)
 
-    self.lbl_title = ttk.Label(self, text="Horizon Christian School Account Verifier")
+    self.lbl_title = ttk.Label(
+        self, text="Horizon Christian School Account Verifier")
     self.lbl_title.grid(columnspan=4, row=0, sticky='N', padx=10, pady=10)
 
     lbl_year = ttk.Label(frm1, text="Year Level: ")
