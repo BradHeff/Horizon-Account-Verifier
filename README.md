@@ -215,7 +215,7 @@ Project Link: [https://github.com/bradheff/Horizon-Account-Verifier](https://git
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/brad-heffernan83/
 
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/screenshot1.png
 
 [Python3]: https://img.shields.io/badge/Python-35495E?style=for-the-badge&logo=python&logoColor=61DAFB
 [python-url]: https://www.python.org/
