@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://www.horizon.sa.edu.au)
 
 This app will list all the year levels of the students from Active Directory, upon selecting a yerar level it will populate the second Combobox with the student display names.<br/>
 
