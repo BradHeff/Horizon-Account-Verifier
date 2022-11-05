@@ -2,10 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 from Functions import Version, Title
 from Image_Date import image
-
+import sv_ttk
 
 def Window(self):
-    W, H = 635, 362
+    W, H = 650, 400
     self.title(''.join([Title, ' ', Version[0:2], '.',
                Version[Version.__len__()-1]]))
     screen_width = self.winfo_screenwidth()
@@ -25,13 +25,15 @@ def Icon(self):
 def HAVGui(self):
     Window(self)
     Icon(self)
-    style = ttk.Style()
-    style.theme_use("xpnative")
-    style.map("Treeview")
+    
+    sv_ttk.set_theme("dark")
+    # style = ttk.Style()
+    # style.theme_use(themename="classic")
+    # style.map("Treeview")
 
     paddings = {'padx': 2, 'pady': 15}
     entry_font = {'font': ('Helvetica', 11)}
-
+    self.rowconfigure(4, weight=2)
     frm1 = tk.Frame(self)
     frm1.columnconfigure(1, weight=2)
     frm2 = tk.Frame(self)
@@ -43,7 +45,7 @@ def HAVGui(self):
     lbl_name = ttk.Label(frm1, text="Enter Student Name: ")
     lbl_name.grid(column=0, row=0, sticky=tk.NS, **paddings)
 
-    self.student_box = tk.Entry(frm1, width=52)
+    self.student_box = tk.Entry(frm1, width=48)
     self.student_box.bind_all('<KeyPress>', self.textChange)
     self.student_box.bind("<Return>", self.studentSearch)
     self.student_box.grid(column=1, columnspan=2, row=0,
@@ -80,3 +82,7 @@ def HAVGui(self):
     self.lbl_error.configure(foreground='red')
     self.lbl_error.grid(sticky=tk.W, column=0, row=2, padx=10)
     frame.grid(sticky=tk.NSEW, columnspan=4, row=3, padx=10)
+    
+    self.prog = ttk.Progressbar(self, orient=tk.HORIZONTAL, mode="determinate", maximum=100, length=630)
+    self.prog.grid(sticky=tk.S, columnspan=4, row=4, **paddings)
+    

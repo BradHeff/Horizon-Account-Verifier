@@ -34,7 +34,7 @@ class HAV(tk.Tk):
     # def resize(self, ass):
     #     self.lbl_error['text'] = str(self.winfo_height()) # type: ignore
 
-    def studentSearch(self):
+    def studentSearch(self, *args):
 
         if self.student_box.get().__len__() > 1:  # type: ignore
             self.clearList()
@@ -54,7 +54,9 @@ class HAV(tk.Tk):
         self.lbl_error['text'] = ""  # type: ignore
 
     def search(self, name):
+        self.prog['value'] = 20  # type: ignore
         userList = Functions.findUser(self, name)
+        self.prog['value'] = 60  # type: ignore
         count = 0
         if userList.__len__() < 1:
             self.lbl_error['text'] = "Nothing Found!"  # type: ignore
@@ -64,12 +66,13 @@ class HAV(tk.Tk):
                 self.tree.insert('', 'end', values=(  # type: ignore
                     userList[x]['name'], userList[x]['email'], userList[x]['title']))  # type: ignore
                 count += 1
+            self.prog['value'] = 100  # type: ignore
             self.lbl_error['text'] = ''.join(  # type: ignore
                 ["Search Returned (", str(count), ") Results"])  # type: ignore
-            self.lbl_error.configure(foreground='green')  # type: ignore
-
+            self.lbl_error.configure(foreground='green')  # type: ignore        
         self.student_box.delete(0, "end")  # type: ignore
         self.button_search['state'] = tk.NORMAL  # type: ignore
+        self.prog['value'] = 0  # type: ignore
 
 
 if __name__ == '__main__':
