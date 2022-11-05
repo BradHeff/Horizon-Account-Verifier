@@ -10,33 +10,32 @@ class HAV(tk.Tk):
     def __init__(self):
         super(HAV, self).__init__()
         GUI.HAVGui(self)
-        
+
         self.server = ""
         self.username = ""
         self.password = ""
         self.ou = ""
         self.domainName = ""
-        
+
         self.compFail = False
         self.servs = False
-        
 
         Functions.getConfig(self, "DComputers")
-        
+
         if self.compFail == True:
-            self.lbl_error['text'] = "Server config in Settings failed" # type: ignore
+            # type: ignore
+            self.lbl_error['text'] = "Server config in Settings failed"  # type: ignore
             self.lbl_error.configure(foreground='red')  # type: ignore
             self.button_search['state'] = tk.DISABLED  # type: ignore
             self.student_box['state'] = tk.DISABLED  # type: ignore
 
         # self.bind("<Configure>", self.resize)
-        
 
     # def resize(self, ass):
     #     self.lbl_error['text'] = str(self.winfo_height()) # type: ignore
-        
+
     def studentSearch(self):
-        
+
         if self.student_box.get().__len__() > 1:  # type: ignore
             self.clearList()
             self.button_search['state'] = tk.DISABLED  # type: ignore
