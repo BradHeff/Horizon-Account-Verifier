@@ -5,7 +5,7 @@ from Image_Date import image
 
 
 def Window(self):
-    W, H = 630, 400
+    W, H = 635, 362
     self.title(''.join([Title, ' ', Version[0:2], '.',
                Version[Version.__len__()-1]]))
     screen_width = self.winfo_screenwidth()
@@ -13,7 +13,7 @@ def Window(self):
     center_x = int(screen_width/2 - W / 2)
     center_y = int(screen_height/2 - H / 2)
     self.geometry(f'{W}x{H}+{center_x}+{center_y}')
-    self.resizable(0, 0)
+    # self.resizable(0, 0)
     self.attributes("-fullscreen", False)
 
 
@@ -28,11 +28,12 @@ def HAVGui(self):
     style = ttk.Style()
     style.theme_use("xpnative")
     style.map("Treeview")
-
+    
     paddings = {'padx': 2, 'pady': 15}
     entry_font = {'font': ('Helvetica', 11)}
 
     frm1 = tk.Frame(self)
+    frm1.columnconfigure(1, weight=2)
     frm2 = tk.Frame(self)
 
     self.lbl_title = ttk.Label(
@@ -40,19 +41,20 @@ def HAVGui(self):
     self.lbl_title.grid(columnspan=4, row=0, sticky='N', padx=10, pady=10)
 
     lbl_name = ttk.Label(frm1, text="Enter Student Name: ")
-    lbl_name.grid(column=0, row=0, sticky='W', **paddings)
+    lbl_name.grid(column=0, row=0, sticky=tk.NS, **paddings)
 
-    self.student_box = tk.Entry(frm1, width=40)
+    self.student_box = tk.Entry(frm1, width=52)
     self.student_box.bind_all('<KeyPress>', self.textChange)
     self.student_box.bind("<Return>", self.studentSearch)
-    self.student_box.grid(column=1, row=0, sticky='E', **paddings)
+    self.student_box.grid(column=1, columnspan=2, row=0, sticky=tk.EW, **paddings)
 
     self.button_search = tk.Button(
         frm2, text="Search...", command=self.studentSearch, width=20)
-    self.button_search.grid(column=0, row=0, sticky='E', **paddings)
+    self.button_search.grid(column=0, row=0, sticky=tk.E, **paddings)
 
-    frm1.grid(column=0, row=1, padx=10, pady=0)
-    frm2.grid(column=1, row=1, padx=10, pady=0)
+    
+    frm1.grid(columnspan=2, row=1, padx=5, pady=0)
+    frm2.grid(column=3, row=1, padx=5, pady=0)
 
     frame = tk.Frame(self)
 

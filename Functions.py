@@ -31,12 +31,11 @@ def getConfig(self, section):
         if self.parser.has_option(section, 'server'):
             self.server = self.parser.get(section, 'server')[
                 1:self.parser.get(section, 'server').__len__()-1]
+            print(self.server)
             if not self.server.__len__() <= 3:
                 self.compFail = False
-                self.servs = True
             else:
                 self.compFail = True
-                self.servs = False
                 return
         # ===================SERVER USERNAME================================
         if self.parser.has_option(section, 'server_user'):
@@ -44,10 +43,8 @@ def getConfig(self, section):
                 1:self.parser.get(section, 'server_user').__len__()-1]
             if not self.username.__len__() <= 3:
                 self.compFail = False
-                self.servs = True
             else:
                 self.compFail = True
-                self.servs = False
                 return
         # ===================SERVER PASSWORD================================
         if self.parser.has_option(section, 'server_pass'):
@@ -55,10 +52,8 @@ def getConfig(self, section):
                 1:self.parser.get(section, 'server_pass').__len__()-1]
             if not self.password.__len__() <= 3:
                 self.compFail = False
-                self.servs = True
             else:
                 self.compFail = True
-                self.servs = False
                 return
         # ===================USEROU================================
         if self.parser.has_option(section, 'userOU'):
@@ -66,17 +61,15 @@ def getConfig(self, section):
                 1:self.parser.get(section, 'userOU').__len__()-1]
             if not self.ou.__len__() <= 3:
                 self.compFail = False
-                self.servs = True
             else:
                 self.compFail = True
-                self.servs = False
                 return
         # ===================DOMAIN NAME================================
         if self.parser.has_option(section, 'domainName'):
             self.domainName = self.parser.get(section, 'domainName')[
                 1:self.parser.get(section, 'domainName').__len__()-1]
             if self.domainName.__len__() <= 3:
-                self.state = True
+                self.compFail = False
         else:
             self.compFail = True
 
