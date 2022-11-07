@@ -66,7 +66,8 @@ class HAV(tk.Tk):
                 self.tree.insert('', 'end', values=(  # type: ignore
                     userList[x]['name'], userList[x]['email'], userList[x]['title']))  # type: ignore
                 count += 1
-            self.prog['value'] = 100  # type: ignore
+                # print(count/userList.__len__())
+                self.prog['value'] = (count/userList.__len__())*100  # type: ignore
             self.lbl_error['text'] = ''.join(  # type: ignore
                 ["Search Returned (", str(count), ") Results"])  # type: ignore
             self.lbl_error.configure(foreground='green')  # type: ignore        

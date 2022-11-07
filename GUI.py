@@ -5,7 +5,7 @@ from Image_Date import image
 import sv_ttk
 
 def Window(self):
-    W, H = 650, 400
+    W, H = 650, 450
     self.title(''.join([Title, ' ', Version[0:2], '.',
                Version[Version.__len__()-1]]))
     screen_width = self.winfo_screenwidth()
@@ -13,7 +13,7 @@ def Window(self):
     center_x = int(screen_width/2 - W / 2)
     center_y = int(screen_height/2 - H / 2)
     self.geometry(f'{W}x{H}+{center_x}+{center_y}')
-    # self.resizable(0, 0)
+    self.resizable(0, 0)
     self.attributes("-fullscreen", False)
 
 

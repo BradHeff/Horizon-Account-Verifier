@@ -79,10 +79,10 @@ def findUser(self, displayname):
     pyad.set_defaults(ldap_server=self.server,
                       username=self.username, password=self.password, ssl=True)
     q = adsearch.ADQuery()
-    q.execute_query(attributes=["displayName", "mail", "sAMAccountName", "title"],
+    q.execute_query(attributes=["displayName", "userPrincipalName", "sAMAccountName", "title"],
                     where_clause="objectClass = 'user' and name = '*"+displayname+"*'", base_dn=self.ou)
     users = {}
     for x in q.get_results():
         users[x['sAMAccountName']] = {
-            'name': x['displayName'], 'email': x['mail'], 'title': x['title']}
+            'name': x['displayName'], 'email': x['userPrincipalName'], 'title': x['title']}
     return (users)
