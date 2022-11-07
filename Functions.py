@@ -8,7 +8,7 @@ import pythoncom
 
 DEBUG = False
 
-Version = "v1.0.1.2"
+Version = "v1.0.1.4"
 Title = "Horizon Account Verifier"
 
 if not DEBUG:
