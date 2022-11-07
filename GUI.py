@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from Functions import Version, Title
 from Image_Date import image
-
+import sv_ttk
 
 
 def Window(self):
@@ -23,7 +23,7 @@ def Icon(self):
     self.wm_iconphoto(False, photo)
 
 
-def HAVGui(self, sv_ttk):
+def HAVGui(self):
     Window(self)
     Icon(self)
 

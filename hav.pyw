@@ -2,14 +2,13 @@ import threading
 import GUI
 import tkinter as tk
 import Functions
-import sv_ttk
 
 class HAV(tk.Tk):
     """docstring for HAV."""
 
     def __init__(self):
         super(HAV, self).__init__()
-        GUI.HAVGui(self, sv_ttk)
+        GUI.HAVGui(self)
 
         self.server = ""
         self.username = ""
@@ -25,7 +24,7 @@ class HAV(tk.Tk):
         if self.compFail == True:
             # type: ignore
             # type: ignore
-            self.lbl_error['text'] = "Server config in Settings failed"
+            self.lbl_error['text'] = "Server config in Settings failed"  # type: ignore
             self.lbl_error.configure(foreground='red')  # type: ignore
             self.button_search['state'] = tk.DISABLED  # type: ignore
             self.student_box['state'] = tk.DISABLED  # type: ignore
@@ -69,7 +68,7 @@ class HAV(tk.Tk):
                     userList[x]['name'], userList[x]['email'], userList[x]['title']))  # type: ignore
                 count += 1
                 # print(count/userList.__len__())
-                self.prog['value'] = (
+                self.prog['value'] = (  # type: ignore
                     count/userList.__len__())*100  # type: ignore
             self.lbl_error['text'] = ''.join(  # type: ignore
                 ["Search Returned (", str(count), ") Results"])  # type: ignore
