@@ -6,7 +6,7 @@ import configparser
 import pythoncom
 
 
-DEBUG = True
+DEBUG = False
 
 Version = "v1.0.1.2"
 Title = "Horizon Account Verifier"

@@ -1,1 +1,1 @@
-pyinstaller.exe --noconfirm --clean --onefile --distpath="scrap/dist" --workpath="scrap/build" --name=%1 --hidden-import pyad --hidden-import sv_ttk --icon="icon.ico" --version-file="version.rc" %2
+pyinstaller.exe --noconfirm --clean --onefile --key="BCjrtVKYf4aKSFoBsJ8bifEkG8ubccsPvaHN3NfevxL8uqk5kWzYDFwhjX62Zp8JgZnK6rV5Zr" --runtime-hook="C:\Users\bheffernan\AppData\Local\Programs\Python\Python311\Lib\site-packages\sv_ttk\theme\dark.tcl" --distpath="scrap/dist" --workpath="scrap/build" --name=%1 --hidden-import="pyad" --icon="icon.ico" --version-file="version.rc" %2

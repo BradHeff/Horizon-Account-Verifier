@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from Functions import Version, Title
 from Image_Date import image
-import sv_ttk
+
 
 
 def Window(self):
@@ -23,13 +23,15 @@ def Icon(self):
     self.wm_iconphoto(False, photo)
 
 
-def HAVGui(self):
+def HAVGui(self, sv_ttk):
     Window(self)
     Icon(self)
 
-    sv_ttk.set_theme("dark")
-    # style = ttk.Style()
-    # style.theme_use(themename="classic")
+    try:
+        sv_ttk.set_theme("sprites_dark")
+    except:
+        style = ttk.Style()
+        style.theme_use("classic")
     # style.map("Treeview")
 
     paddings = {'padx': 2, 'pady': 15}

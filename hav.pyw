@@ -2,14 +2,14 @@ import threading
 import GUI
 import tkinter as tk
 import Functions
-
+import sv_ttk
 
 class HAV(tk.Tk):
     """docstring for HAV."""
 
     def __init__(self):
         super(HAV, self).__init__()
-        GUI.HAVGui(self)
+        GUI.HAVGui(self, sv_ttk)
 
         self.server = ""
         self.username = ""
