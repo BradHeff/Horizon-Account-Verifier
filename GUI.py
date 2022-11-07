@@ -28,11 +28,9 @@ def HAVGui(self):
     Icon(self)
 
     try:
-        sv_ttk.set_theme("sprites_dark")
+        sv_ttk.set_theme("dark")
     except:
-        style = ttk.Style()
-        style.theme_use("classic")
-    # style.map("Treeview")
+        pass
 
     paddings = {'padx': 2, 'pady': 15}
     entry_font = {'font': ('Helvetica', 11)}

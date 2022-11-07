@@ -20,6 +20,16 @@ else:
 
 settings_dir = ''.join([exe_dir, '\\Settings\\'])
 
+def getSettings(self, section):
+    self.parser = configparser.RawConfigParser(
+        comment_prefixes=('#', ';', '###'))
+    self.parser.read(settings_dir + settings_file)
+
+    if self.parser.has_section(section):
+        # ===================SERVER================================
+        if self.parser.has_option(section, 'company'):
+            self.company = self.parser.get(section, 'company')[
+                1:self.parser.get(section, 'company').__len__()-1]
 
 def getConfig(self, section):
     self.parser = configparser.RawConfigParser(

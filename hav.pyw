@@ -10,6 +10,7 @@ class HAV(tk.Tk):
         super(HAV, self).__init__()
         GUI.HAVGui(self)
 
+        self.company = ""
         self.server = ""
         self.username = ""
         self.password = ""
@@ -19,7 +20,7 @@ class HAV(tk.Tk):
         self.compFail = False
         self.servs = False
 
-        Functions.getConfig(self, "DComputers")
+        Functions.getConfig(self, Functions.getSettings(self, "Settings"))
 
         if self.compFail == True:
             # type: ignore
@@ -62,8 +63,7 @@ class HAV(tk.Tk):
             self.lbl_error['text'] = "Nothing Found!"  # type: ignore
             self.lbl_error.configure(foreground='red')  # type: ignore
         else:
-            for x in userList:
-                8
+            for x in userList:                
                 self.tree.insert('', 'end', values=(  # type: ignore
                     userList[x]['name'], userList[x]['email'], userList[x]['title']))  # type: ignore
                 count += 1
