@@ -2,3 +2,5 @@
 /.vscode
 /__pycache__
 /Settings/Settings-debug.ini
+/scrap
+*.spec

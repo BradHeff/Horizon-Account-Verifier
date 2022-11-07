@@ -24,7 +24,8 @@ class HAV(tk.Tk):
 
         if self.compFail == True:
             # type: ignore
-            self.lbl_error['text'] = "Server config in Settings failed"  # type: ignore
+            # type: ignore
+            self.lbl_error['text'] = "Server config in Settings failed"
             self.lbl_error.configure(foreground='red')  # type: ignore
             self.button_search['state'] = tk.DISABLED  # type: ignore
             self.student_box['state'] = tk.DISABLED  # type: ignore
@@ -63,14 +64,16 @@ class HAV(tk.Tk):
             self.lbl_error.configure(foreground='red')  # type: ignore
         else:
             for x in userList:
+                8
                 self.tree.insert('', 'end', values=(  # type: ignore
                     userList[x]['name'], userList[x]['email'], userList[x]['title']))  # type: ignore
                 count += 1
                 # print(count/userList.__len__())
-                self.prog['value'] = (count/userList.__len__())*100  # type: ignore
+                self.prog['value'] = (
+                    count/userList.__len__())*100  # type: ignore
             self.lbl_error['text'] = ''.join(  # type: ignore
                 ["Search Returned (", str(count), ") Results"])  # type: ignore
-            self.lbl_error.configure(foreground='green')  # type: ignore        
+            self.lbl_error.configure(foreground='green')  # type: ignore
         self.student_box.delete(0, "end")  # type: ignore
         self.button_search['state'] = tk.NORMAL  # type: ignore
         self.prog['value'] = 0  # type: ignore

@@ -4,6 +4,7 @@ from Functions import Version, Title
 from Image_Date import image
 import sv_ttk
 
+
 def Window(self):
     W, H = 650, 450
     self.title(''.join([Title, ' ', Version[0:2], '.',
@@ -25,7 +26,7 @@ def Icon(self):
 def HAVGui(self):
     Window(self)
     Icon(self)
-    
+
     sv_ttk.set_theme("dark")
     # style = ttk.Style()
     # style.theme_use(themename="classic")
@@ -82,7 +83,7 @@ def HAVGui(self):
     self.lbl_error.configure(foreground='red')
     self.lbl_error.grid(sticky=tk.W, column=0, row=2, padx=10)
     frame.grid(sticky=tk.NSEW, columnspan=4, row=3, padx=10)
-    
-    self.prog = ttk.Progressbar(self, orient=tk.HORIZONTAL, mode="determinate", maximum=100, length=630)
+
+    self.prog = ttk.Progressbar(
+        self, orient=tk.HORIZONTAL, mode="determinate", maximum=100, length=630)
     self.prog.grid(sticky=tk.S, columnspan=4, row=4, **paddings)
-    
