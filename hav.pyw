@@ -3,6 +3,7 @@ import GUI
 import tkinter as tk
 import Functions
 
+
 class HAV(tk.Tk):
     """docstring for HAV."""
 
@@ -23,8 +24,6 @@ class HAV(tk.Tk):
         Functions.getConfig(self, Functions.getSettings(self, "Settings"))
 
         if self.compFail == True:
-            # type: ignore
-            # type: ignore
             self.lbl_error['text'] = "Server config in Settings failed"  # type: ignore
             self.lbl_error.configure(foreground='red')  # type: ignore
             self.button_search['state'] = tk.DISABLED  # type: ignore
@@ -63,9 +62,12 @@ class HAV(tk.Tk):
             self.lbl_error['text'] = "Nothing Found!"  # type: ignore
             self.lbl_error.configure(foreground='red')  # type: ignore
         else:
-            for x in userList:                
-                self.tree.insert('', 'end', values=(  # type: ignore
-                    userList[x]['name'], userList[x]['email'], userList[x]['title']))  # type: ignore
+            for x in userList:
+                self.tree.tag_configure(  # type: ignore
+                    tagname="Disabled", background="#ff0000")  # type: ignore
+                self.tree.insert('', 'end', tag=userList[x]['status'], values=(  # type: ignore
+                    userList[x]['name'], userList[x]['email'], userList[x]['title'], userList[x]['status']))  # type: ignore
+
                 count += 1
                 # print(count/userList.__len__())
                 self.prog['value'] = (  # type: ignore

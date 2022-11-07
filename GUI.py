@@ -6,7 +6,7 @@ import sv_ttk
 
 
 def Window(self):
-    W, H = 650, 450
+    W, H = 850, 450
     self.title(''.join([Title, ' ', Version[0:2], '.',
                Version[Version.__len__()-1]]))
     screen_width = self.winfo_screenwidth()
@@ -46,7 +46,7 @@ def HAVGui(self):
     lbl_name = ttk.Label(frm1, text="Enter Student Name: ")
     lbl_name.grid(column=0, row=0, sticky=tk.NS, **paddings)
 
-    self.student_box = tk.Entry(frm1, width=48)
+    self.student_box = tk.Entry(frm1, width=75)
     self.student_box.bind_all('<KeyPress>', self.textChange)
     self.student_box.bind("<Return>", self.studentSearch)
     self.student_box.grid(column=1, columnspan=2, row=0,
@@ -62,7 +62,7 @@ def HAVGui(self):
     frame = tk.Frame(self)
 
     self.tree = ttk.Treeview(frame, columns=(
-        "c1", "c2", "c3"), show='headings')
+        "c1", "c2", "c3", "c4"), show='headings')
 
     scrollbar = tk.Scrollbar(frame)
     scrollbar.config(command=self.tree.yview)
@@ -76,6 +76,8 @@ def HAVGui(self):
     self.tree.heading("# 2", text="EMAIL")
     self.tree.column("# 3", anchor=tk.CENTER)
     self.tree.heading("# 3", text="TITLE")
+    self.tree.column("# 4", anchor=tk.CENTER)
+    self.tree.heading("# 4", text="STATUS")
 
     self.tree.pack(side='left', fill='x')
 

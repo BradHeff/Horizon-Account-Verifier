@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from pyad import adsearch, pyad
+from pyad import adsearch, pyad, aduser
 from os import path
 import configparser
 import pythoncom
@@ -8,7 +8,7 @@ import pythoncom
 
 DEBUG = False
 
-Version = "v1.0.1.4"
+Version = "v1.0.1.5"
 Title = "Horizon Account Verifier"
 
 if not DEBUG:
@@ -20,6 +20,7 @@ else:
 
 settings_dir = ''.join([exe_dir, '\\Settings\\'])
 
+
 def getSettings(self, section):
     self.parser = configparser.RawConfigParser(
         comment_prefixes=('#', ';', '###'))
@@ -30,6 +31,7 @@ def getSettings(self, section):
         if self.parser.has_option(section, 'company'):
             self.company = self.parser.get(section, 'company')[
                 1:self.parser.get(section, 'company').__len__()-1]
+
 
 def getConfig(self, section):
     self.parser = configparser.RawConfigParser(
@@ -87,12 +89,18 @@ def getConfig(self, section):
 def findUser(self, displayname):
     pythoncom.CoInitialize()
     pyad.set_defaults(ldap_server=self.server,
-                      username=self.username, password=self.password, ssl=True)
+                      username=self.username, password=self.password, ssl=False)
     q = adsearch.ADQuery()
-    q.execute_query(attributes=["displayName", "userPrincipalName", "sAMAccountName", "title"],
+    q.execute_query(attributes=["displayName", "userPrincipalName", "sAMAccountName", "title", "distinguishedName"],
                     where_clause="objectClass = 'user' and name = '*"+displayname+"*'", base_dn=self.ou)
     users = {}
+
     for x in q.get_results():
+        user = aduser.ADObject.from_dn(x['distinguishedName'])
+        user_atrri = user.get_user_account_control_settings()
+        stat = "Enabled"
+        if user_atrri['ACCOUNTDISABLE']:
+            stat = "Disabled"
         users[x['sAMAccountName']] = {
-            'name': x['displayName'], 'email': x['userPrincipalName'], 'title': x['title']}
+            'name': x['displayName'], 'email': x['userPrincipalName'], 'title': x['title'], 'status': stat}
     return (users)
