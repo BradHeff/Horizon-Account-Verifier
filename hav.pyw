@@ -3,6 +3,7 @@ import GUI
 import tkinter as tk
 from tkinter import ttk
 import Functions
+import sv_ttk
 
 
 class HAV(tk.Tk):
@@ -10,7 +11,8 @@ class HAV(tk.Tk):
 
     def __init__(self):
         super(HAV, self).__init__()
-        
+        self.W = 0
+        self.H = 0
         self.lbl_error = tk.Label()
         self.button_search = tk.Button()
         self.student_box = tk.Entry()
@@ -37,11 +39,28 @@ class HAV(tk.Tk):
             self.lbl_error.configure(foreground='red')
             self.button_search['state'] = tk.DISABLED
             self.student_box['state'] = tk.DISABLED
+        
+        
+        t = threading.Thread(target=self.load)
+        t.daemon = True
+        t.start()
 
-        # self.bind("<Configure>", self.resize)
 
-    # def resize(self, ass):
-    #     self.lbl_error['text'] = str(self.winfo_height())
+    def load(self):
+        try:
+            res = Functions.check_connection(self)
+            cnt = 1
+            self.prog['maximum'] = res.__len__()
+            for x in res:
+                self.prog['value'] = cnt
+                cnt+=1
+            self.prog['value'] = 0
+            self.student_box['state'] = tk.NORMAL
+            self.button_search['state'] = tk.NORMAL
+        except Exception as e:
+            print(e)
+            self.messageBox("ERROR", "Failed to connect to server")
+
 
     def studentSearch(self, *args):
 
@@ -87,6 +106,31 @@ class HAV(tk.Tk):
         self.student_box.delete(0, "end")
         self.button_search['state'] = tk.NORMAL
         self.prog['value'] = 0
+
+    def messageBox(self, title, txt):
+        try:
+            sv_ttk.set_theme("dark")
+        except:
+            pass
+        ap = tk.Tk()
+        geo = self.winfo_geometry()
+        posX = geo.split("+")[1]
+        posY = geo.split("+")[2]            
+        
+        center_x = int(int(posX) + (self.W/2) - 100)
+        center_y = int(int(posY) + (self.H/2) - 25)
+
+        message = tk.Label(ap, text=txt)
+        
+        ap.title(title)
+        ap.geometry(f'200x50+{center_x}+{center_y}')
+        ap.attributes("-fullscreen", False)
+        ap.attributes("-toolwindow", True)
+        ap.attributes("-topmost", True)
+        
+        message.pack(fill='both',expand=True)
+        
+        ap.mainloop()
 
 
 if __name__ == '__main__':

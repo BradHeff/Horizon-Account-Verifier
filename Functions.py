@@ -86,6 +86,15 @@ def getConfig(self, section):
             self.compFail = True
 
 
+def check_connection(self):
+    pythoncom.CoInitialize()
+    attributes = ['sAMAccountName']
+    pyad.set_defaults(ldap_server=self.server,
+                      username=self.username, password=self.password, ssl=False)
+    q = adsearch.ADQuery()
+    q.execute_query(attributes=attributes, where_clause="objectClass = 'user'", base_dn=self.ou)
+    return q.get_all_results()
+
 def findUser(self, displayname):
     pythoncom.CoInitialize()
     pyad.set_defaults(ldap_server=self.server,

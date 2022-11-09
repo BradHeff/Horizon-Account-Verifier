@@ -6,14 +6,14 @@ import sv_ttk
 
 
 def Window(self):
-    W, H = 850, 450
+    self.W, self.H = 850, 450
     self.title(''.join([Title, ' ', Version[0:2], '.',
                Version[Version.__len__()-1]]))
     screen_width = self.winfo_screenwidth()
     screen_height = self.winfo_screenheight()
-    center_x = int(screen_width/2 - W / 2)
-    center_y = int(screen_height/2 - H / 2)
-    self.geometry(f'{W}x{H}+{center_x}+{center_y}')
+    center_x = int(screen_width/2 - self.W / 2)
+    center_y = int(screen_height/2 - self.H / 2)
+    self.geometry(f'{self.W}x{self.H}+{center_x}+{center_y}')
     self.resizable(0, 0)
     self.attributes("-fullscreen", False)
 
@@ -56,6 +56,9 @@ def HAVGui(self):
         frm2, text="Search...", command=self.studentSearch, width=20)
     self.button_search.grid(column=0, row=0, sticky=tk.E, **paddings)
 
+    self.student_box['state'] = tk.DISABLED
+    self.button_search['state'] = tk.DISABLED
+        
     frm1.grid(columnspan=2, row=1, padx=5, pady=0)
     frm2.grid(column=3, row=1, padx=5, pady=0)
 
